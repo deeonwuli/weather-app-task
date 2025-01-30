@@ -14,28 +14,27 @@ export const SearchInput = (props: SearchInputProps) => {
   const [searchValue, setSearchValue] = useState("");
   const { changeCity } = useCityWeather();
 
-  const findCityWeather = useCallback(() => {
-    if (!searchValue) return;
+  const findCityWeather = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      if (!searchValue) return;
 
-    changeCity(searchValue);
-  }, [searchValue, changeCity]);
+      e.preventDefault();
+      changeCity(searchValue);
+      setSearchValue("");
+    },
+    [searchValue, changeCity]
+  );
 
   return (
     <SearchForm>
       <img src={searchIcon} alt="search icon" />
       <StyledInput
         type="text"
+        value={searchValue}
         placeholder={placeholder || "Search for a location"}
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      <Button
-        onClick={(e) => {
-          findCityWeather();
-          e.preventDefault();
-        }}
-      >
-        Search
-      </Button>
+      <Button onClick={findCityWeather}>Search</Button>
     </SearchForm>
   );
 };

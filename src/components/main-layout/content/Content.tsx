@@ -7,10 +7,11 @@ import { convertTimestampToTime } from "../../../utils/dateHelpers";
 import Highlight from "./Highlight";
 import { highlights } from "../../../constants/highlights";
 import { useCityWeather } from "../../../contexts/city-weather-context";
+import ContentFallback from "./ContentFallback";
 
 const Content = () => {
-  const { cityWeather } = useCityWeather();
-  if (!cityWeather) return null;
+  const { cityWeather, responseState } = useCityWeather();
+  if (!cityWeather) return <ContentFallback responseState={responseState} />;
 
   const { region, name, weatherHighlights, time } = cityWeather;
   const { localTime, timezone } = time;
