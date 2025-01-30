@@ -5,15 +5,18 @@ import {
   CityWeatherApi,
   WeatherCondition,
 } from "../types/CityWeather";
-import { ErrorMessage } from "../types/ResponseState";
+import { ErrorMessage, ResponseState } from "../types/ResponseState";
 
 export function useWeatherByCity(city: string) {
   const [cityWeather, setCityWeather] = useState<CityWeather>();
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>();
+  const [responseState, setResponseState] = useState<ResponseState>({
+    loading: false,
+    error: undefined,
+  });
 
   useEffect(() => {
     async function fetchWeather() {
+      setResponseState((prevState) => ({ ...prevState, loading: true }));
       try {
         const response = await fetchData<CityWeatherApi>("/weather", {
           q: city,
@@ -22,11 +25,15 @@ export function useWeatherByCity(city: string) {
 
         const weatherData = transformWeatherResponse(response);
         setCityWeather(weatherData);
-        setLoading(false);
+        setResponseState((prevState) => ({ ...prevState, error: undefined }));
       } catch (err: unknown) {
         const error = err as ErrorMessage;
-        setError(error.message);
-        setLoading(false);
+        setResponseState((prevState) => ({
+          ...prevState,
+          error: { message: error.message },
+        }));
+      } finally {
+        setResponseState((prevState) => ({ ...prevState, loading: false }));
       }
     }
 
@@ -35,10 +42,7 @@ export function useWeatherByCity(city: string) {
 
   return {
     cityWeather: cityWeather,
-    responseState: {
-      loading,
-      error: error ? { message: error } : undefined,
-    },
+    responseState: responseState,
   };
 }
 
