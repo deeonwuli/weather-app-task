@@ -10,7 +10,6 @@ export function getWindDirection(degree: number): string {
     "Northwest",
   ];
   const index = Math.round(degree / 45) % 8;
-  console.log({ index, degree, direction: directions[index] });
 
   return directions[index];
 }

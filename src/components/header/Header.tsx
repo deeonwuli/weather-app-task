@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import compassIcon from "../../assets/compass.svg";
 import logo from "../../assets/logo.svg";
-import profileThumb from "../../assets/thumbnails/profile.png";
 import Icon from "../common/Icon";
 import { SearchInput } from "../common/search-input/SearchInput";
 
@@ -9,14 +8,24 @@ const Header = () => {
   return (
     <StyledHeader>
       <StyledDiv>
-        <Icon src={logo} height="24px" alt="logo" />
+        <a href="/">
+          <Icon src={logo} alt="logo" />
+        </a>
         <Title>Weather</Title>
         <SearchInput placeholder="Search" showButton={false} />
       </StyledDiv>
 
       <StyledDiv>
+        <a href="https://github.com/deeonwuli" target="_blank" rel="noreferrer">
+          <Icon
+            src={
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEEg9z-ZF7R1dTA6quJkuPXJsyA6ViEp6F0Q&s"
+            }
+            height="40px"
+            alt="profile thumb"
+          />
+        </a>
         <Icon src={compassIcon} height="40px" alt="compass icon" />
-        <Icon src={profileThumb} height="40px" alt="profile thumb" />
       </StyledDiv>
     </StyledHeader>
   );

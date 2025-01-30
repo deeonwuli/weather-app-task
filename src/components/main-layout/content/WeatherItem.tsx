@@ -49,7 +49,6 @@ function getWeatherItemDescription(
     case "Humidity":
       return `${cityWeather.humidity}%`;
     case "Wind": {
-      console.log({ cityWeather });
       const { degree, speed } = cityWeather.wind;
 
       const windDirection = degree ? getWindDirection(degree) : undefined;
