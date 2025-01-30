@@ -1,13 +1,24 @@
 import styled from "styled-components";
 import Button from "../Button";
 import searchIcon from "../../../assets/icons/search.svg";
+import { useCallback, useState } from "react";
+import { useCityWeather } from "../../../contexts/city-weather-context";
 
 type SearchInputProps = {
   placeholder?: string;
   showButton?: boolean;
 };
+
 export const SearchInput = (props: SearchInputProps) => {
-  const { placeholder, showButton = true } = props;
+  const { placeholder } = props;
+  const [searchValue, setSearchValue] = useState("");
+  const { changeCity } = useCityWeather();
+
+  const findCityWeather = useCallback(() => {
+    if (!searchValue) return;
+
+    changeCity(searchValue);
+  }, [searchValue, changeCity]);
 
   return (
     <SearchForm>
@@ -15,8 +26,16 @@ export const SearchInput = (props: SearchInputProps) => {
       <StyledInput
         type="text"
         placeholder={placeholder || "Search for a location"}
+        onChange={(e) => setSearchValue(e.target.value)}
       />
-      {showButton && <Button>Search</Button>}
+      <Button
+        onClick={(e) => {
+          findCityWeather();
+          e.preventDefault();
+        }}
+      >
+        Search
+      </Button>
     </SearchForm>
   );
 };

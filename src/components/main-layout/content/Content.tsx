@@ -3,17 +3,25 @@ import cityImage from "../../../assets/cityScape.png";
 import { weather } from "../../../constants/weather";
 import WeatherItem from "./WeatherItem";
 import TemperatureConditions from "./TemperatureConditions";
-import { getLocalTime } from "../../../utils/dateHelpers";
+import { convertTimestampToTime } from "../../../utils/dateHelpers";
 import Highlight from "./Highlight";
-import { highlights } from "../../../constants/hightlights";
+import { highlights } from "../../../constants/highlights";
+import { useCityWeather } from "../../../contexts/city-weather-context";
 
 const Content = () => {
-  const localTimeString = getLocalTime();
+  const { cityWeather } = useCityWeather();
+  if (!cityWeather) return null;
+
+  const { region, name, weatherHighlights, time } = cityWeather;
+  const { localTime, timezone } = time;
+  const localTimeString = convertTimestampToTime(localTime, timezone);
 
   return (
     <Main>
       <div>
-        <StyledTitle>Weather in San Francisco, California</StyledTitle>
+        <StyledTitle>
+          Weather in {name}, {region}
+        </StyledTitle>
         <DateTimeText>Today &bull; {localTimeString}</DateTimeText>
       </div>
 
@@ -21,13 +29,13 @@ const Content = () => {
         <StyledHeading>Current conditions</StyledHeading>
         <FlexRowContainer>
           <WeatherImage src={cityImage} alt="weather image" />
-          <TemperatureConditions />
+          <TemperatureConditions cityWeather={cityWeather} />
         </FlexRowContainer>
       </Section>
 
       <FlexRowContainer>
         {weather.map((item, index) => (
-          <WeatherItem key={index} weather={item} />
+          <WeatherItem key={index} weather={item} cityWeather={cityWeather} />
         ))}
       </FlexRowContainer>
 
@@ -35,7 +43,11 @@ const Content = () => {
         <h4>Today's Highlights</h4>
         <FlexRowContainer>
           {highlights.map((highlight, index) => (
-            <Highlight key={index} highlight={highlight} />
+            <Highlight
+              key={index}
+              highlight={highlight}
+              weatherHighlights={weatherHighlights}
+            />
           ))}
         </FlexRowContainer>
       </Section>

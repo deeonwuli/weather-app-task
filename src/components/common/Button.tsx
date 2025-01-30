@@ -4,7 +4,7 @@ import styled from "styled-components";
 type ButtonProps = {
   children: React.ReactNode;
   secondary?: boolean;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const Button = (props: ButtonProps) => {

@@ -11,12 +11,10 @@ export const highlights: LabeledCardProps[] = [
   },
   {
     title: "Sunrise",
-    description: "6:57 AM",
     imageUrl: sunriseImage,
   },
   {
     title: "Sunset",
-    description: "7: PM",
     imageUrl: sunsetImage,
   },
 ];

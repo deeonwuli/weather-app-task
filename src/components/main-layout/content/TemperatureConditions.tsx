@@ -1,13 +1,17 @@
 import styled from "styled-components";
 import Button from "../../common/Button";
 import { SearchInput } from "../../common/search-input/SearchInput";
+import { CityWeather } from "../../../types/CityWeather";
 
-const TemperatureConditions = () => {
+const TemperatureConditions = (props: { cityWeather: CityWeather }) => {
+  const { temperature, weatherConditions } = props.cityWeather;
+  const weatherCondition = weatherConditions[0].description;
+
   return (
     <TemperatureContainer>
-      <div style={{ textAlign: "center" }}>
-        <TemperatureText>22°C</TemperatureText>
-        <p>Sunny</p>
+      <div>
+        <TemperatureText>{temperature}°C</TemperatureText>
+        <CenterText>{weatherCondition}</CenterText>
       </div>
 
       <ButtonContainer>
@@ -30,6 +34,11 @@ const TemperatureContainer = styled.div`
   padding: 20px 0px;
   width: calc(50% - 1rem);
   height: 16rem;
+`;
+
+export const CenterText = styled.p`
+  text-align: center;
+  text-transform: capitalize;
 `;
 
 const TemperatureText = styled.h3`
