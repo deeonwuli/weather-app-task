@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import { ResponseState } from "../../../types/ResponseState";
 
-const ContentFallback = (props: { responseState: ResponseState }) => {
+const ContentFallback = (props: {
+  responseState: ResponseState | undefined;
+}) => {
   const { responseState } = props;
 
-  if (responseState.loading) return <div className="spinner"></div>;
+  if (!responseState || responseState?.loading)
+    return <div className="spinner"></div>;
+
   return (
     <>
       {responseState.error ? (
