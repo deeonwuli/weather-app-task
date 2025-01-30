@@ -1,6 +1,6 @@
 # Weather Dashboard App
 
-# Features
+## Features
 
 - Search up cities and display current weather information
 - Show temperature, humidity, wind speed, and other weather conditions
