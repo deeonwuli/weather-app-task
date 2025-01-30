@@ -17,7 +17,7 @@ export type CityWeatherApi = {
   weather: APIWeather[];
   wind: {
     speed: number;
-    degree: number;
+    deg: number;
   };
 };
 

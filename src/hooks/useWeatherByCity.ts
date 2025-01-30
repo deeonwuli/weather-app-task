@@ -63,7 +63,7 @@ function transformWeatherResponse(
       ? `${response.main.temp}°C`
       : `${response.main.temp}°F`,
     humidity: response.main.humidity,
-    wind: { speed: response.wind.speed, degree: response.wind.degree },
+    wind: { speed: response.wind.speed, degree: response.wind.deg },
     weatherConditions: mapWeatherConditionsResponse(response),
     weatherHighlights: {
       sunrise: response.sys.sunrise,
