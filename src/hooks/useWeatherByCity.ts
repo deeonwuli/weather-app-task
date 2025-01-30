@@ -52,7 +52,7 @@ function transformWeatherResponse(response: CityWeatherApi): CityWeather {
     },
     temperature: response.main.temp,
     humidity: response.main.humidity,
-    windSpeed: response.wind.speed,
+    wind: { speed: response.wind.speed, degree: response.wind.degree },
     weatherConditions: mapWeatherConditionsResponse(response),
     weatherHighlights: {
       sunrise: response.sys.sunrise,

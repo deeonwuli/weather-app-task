@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Icon from "../../common/Icon";
 import { LabeledCardProps } from "../../../types/LabeledCardProps";
 import { CityWeather } from "../../../types/CityWeather";
+import { getWindDirection } from "../../../utils/weatherHelpers";
 
 const WeatherItem = (props: {
   weather: LabeledCardProps;
@@ -47,8 +48,13 @@ function getWeatherItemDescription(
   switch (weather.title) {
     case "Humidity":
       return `${cityWeather.humidity}%`;
-    case "Wind":
-      return `${cityWeather.windSpeed} km/h from the west`;
+    case "Wind": {
+      console.log({ cityWeather });
+      const { degree, speed } = cityWeather.wind;
+
+      const windDirection = degree ? getWindDirection(degree) : undefined;
+      return `${speed}km/h ${windDirection ? `from the ${windDirection}` : ""}`;
+    }
     default:
       return weather.description || "";
   }

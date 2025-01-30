@@ -36,12 +36,17 @@ export type CityWeather = {
   time: Time;
   weatherConditions: WeatherCondition[];
   weatherHighlights: WeatherHighlights;
-  windSpeed: number;
+  wind: Wind;
 };
 
 type Time = {
   timezone: number;
   localTime: number;
+};
+
+type Wind = {
+  speed: number;
+  degree?: number;
 };
 
 export type WeatherCondition = LabeledCardProps & { id: string };
