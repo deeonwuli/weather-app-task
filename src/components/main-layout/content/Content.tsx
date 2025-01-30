@@ -29,21 +29,21 @@ const Content = () => {
 
       <Section>
         <StyledHeading>Current conditions</StyledHeading>
-        <FlexRowContainer>
+        <FlexContainer>
           <WeatherImage src={cityImage} alt="weather image" />
           <TemperatureConditions cityWeather={cityWeather} />
-        </FlexRowContainer>
+        </FlexContainer>
       </Section>
 
-      <FlexRowContainer>
+      <FlexContainer>
         {weather.map((item, index) => (
           <WeatherItem key={index} weather={item} cityWeather={cityWeather} />
         ))}
-      </FlexRowContainer>
+      </FlexContainer>
 
       <Section>
         <h4>Today's Highlights</h4>
-        <FlexRowContainer>
+        <FlexContainer>
           {highlights.map((highlight, index) => (
             <Highlight
               key={index}
@@ -51,7 +51,7 @@ const Content = () => {
               weatherHighlights={weatherHighlights}
             />
           ))}
-        </FlexRowContainer>
+        </FlexContainer>
       </Section>
     </Main>
   );
@@ -61,6 +61,10 @@ export default Content;
 
 const Main = styled.main`
   width: calc(100vw - 25% - 2rem);
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const StyledTitle = styled.h1`
@@ -80,12 +84,16 @@ const StyledHeading = styled.h2`
   font-size: 18px;
 `;
 
-const FlexRowContainer = styled.section`
+const FlexContainer = styled.section`
   padding: 20px 0;
   display: flex;
   gap: 1rem;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Section = styled.section`
@@ -96,4 +104,8 @@ const WeatherImage = styled.img`
   height: 16rem;
   width: 50%;
   border-radius: 12px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;

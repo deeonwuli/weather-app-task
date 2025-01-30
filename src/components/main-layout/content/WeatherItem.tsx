@@ -39,6 +39,10 @@ const StyledDiv = styled.div`
   span {
     font-size: 20px;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 function getWeatherItemDescription(

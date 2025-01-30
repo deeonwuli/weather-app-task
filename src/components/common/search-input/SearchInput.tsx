@@ -55,4 +55,8 @@ const StyledInput = styled.input`
   border: none;
   outline: none;
   background-color: #f0f2f5;
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;

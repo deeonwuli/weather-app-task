@@ -12,11 +12,11 @@ const Highlight = (props: {
   const time = getHighlightTime(highlight, weatherHighlights);
 
   return (
-    <div>
+    <Container>
       <img src={imageUrl} alt={title} />
       <Title>{title}</Title>
       <p>{time}</p>
-    </div>
+    </Container>
   );
 };
 
@@ -43,4 +43,13 @@ function getHighlightTime(
 const Title = styled.p`
   font-weight: 500;
   color: #121717;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;

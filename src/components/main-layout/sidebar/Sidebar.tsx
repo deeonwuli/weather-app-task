@@ -32,6 +32,10 @@ export default Sidebar;
 
 const Aside = styled.aside`
   width: 25%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const FavouritesContainer = styled.div`

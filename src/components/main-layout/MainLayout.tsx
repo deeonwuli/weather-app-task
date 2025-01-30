@@ -17,4 +17,8 @@ const StyledMainLayout = styled.main`
   display: flex;
   gap: 2rem;
   padding: 20px 24px;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
 `;
