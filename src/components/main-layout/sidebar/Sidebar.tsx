@@ -1,9 +1,14 @@
 import styled from "styled-components";
 import CityItem from "./CityItem";
 import Button from "../../common/Button";
-import { cities } from "../../../constants/cities";
+import { useCityWeather } from "../../../contexts/city-weather-context";
+import { useFavouriteCities } from "../../../hooks/useFavouriteCities";
 
 const Sidebar = () => {
+  const { cityWeather } = useCityWeather();
+  const { favouriteCities, updateFavouriteCities } =
+    useFavouriteCities(cityWeather);
+
   return (
     <Aside>
       <FavouritesContainer>
@@ -11,11 +16,13 @@ const Sidebar = () => {
         <StyledText>
           Save your favourite cities for quick access in the future.
         </StyledText>
-        <Button>Add to favourites</Button>
+        <Button onClick={updateFavouriteCities} disabled={!cityWeather}>
+          Add to favourites
+        </Button>
       </FavouritesContainer>
 
-      {cities.map((city) => (
-        <CityItem key={city.title} city={city} />
+      {favouriteCities.map(({ city }) => (
+        <CityItem key={city} city={{ title: city, imageUrl: "" }} />
       ))}
     </Aside>
   );

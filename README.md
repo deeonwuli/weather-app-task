@@ -5,6 +5,7 @@
 - Search up cities and display current weather information
 - Show temperature, humidity, wind speed, and other weather conditions
 - Toggle temperature unit between Celsius and Fahrenheit
+- Save and list favourite cities (to local storage)
 
 ## Technologies Used
 

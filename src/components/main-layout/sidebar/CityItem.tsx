@@ -1,16 +1,20 @@
 import styled from "styled-components";
 import Icon from "../../common/Icon";
 import { LabeledCardProps } from "../../../types/LabeledCardProps";
+import { cities } from "../../../constants/cities";
 
 const CityItem = (props: { city: LabeledCardProps }) => {
   const { title, imageUrl } = props.city;
+
+  const randomNumber = Math.floor(Math.random() * cities.length);
+  const randomImageUrl = cities[randomNumber].imageUrl;
 
   return (
     <CityContainer>
       {imageUrl !== "" ? (
         <CityThumbnail src={imageUrl} alt={title} height="30px" />
       ) : (
-        <EmptyThumbnail />
+        <CityThumbnail src={randomImageUrl} alt={title} height="30px" /> // Using random city thumbnails here
       )}
 
       <p>{title}</p>
@@ -29,11 +33,4 @@ const CityContainer = styled.div`
 
 const CityThumbnail = styled(Icon)`
   border-radius: 25%;
-`;
-
-const EmptyThumbnail = styled.div`
-  height: 2rem;
-  width: 2rem;
-  border-radius: 25%;
-  background-color: #dbe3e5;
 `;
