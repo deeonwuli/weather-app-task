@@ -16,12 +16,8 @@
 
 ## Getting Started
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/weather-dashboard.git
-   cd weather-dashboard
-   ```
 
-2. Set OpenWeather API base url and api key in `.env.local`
+2. At the root of the project folder, set OpenWeather API base url and api key in `.env.local`
 ```bash
 VITE_API_KEY=
 VITE_API_BASE_URL=
