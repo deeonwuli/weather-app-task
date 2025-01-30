@@ -29,3 +29,9 @@ p {
     transform: rotate(360deg);
   }
 }
+
+
+button {
+  all: unset;
+  cursor: pointer;
+}

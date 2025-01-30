@@ -3,8 +3,11 @@ import compassIcon from "../../assets/compass.svg";
 import logo from "../../assets/logo.svg";
 import Icon from "../common/Icon";
 import { SearchInput } from "../common/search-input/SearchInput";
+import { useCityWeather } from "../../contexts/city-weather-context";
 
 const Header = () => {
+  const { changeUnit } = useCityWeather();
+
   return (
     <StyledHeader>
       <StyledDiv>
@@ -16,6 +19,9 @@ const Header = () => {
       </StyledDiv>
 
       <StyledDiv>
+        <button onClick={changeUnit}>
+          <Icon src={compassIcon} height="40px" alt="compass icon" />
+        </button>
         <a href="https://github.com/deeonwuli" target="_blank" rel="noreferrer">
           <Icon
             src={
@@ -25,7 +31,6 @@ const Header = () => {
             alt="profile thumb"
           />
         </a>
-        <Icon src={compassIcon} height="40px" alt="compass icon" />
       </StyledDiv>
     </StyledHeader>
   );

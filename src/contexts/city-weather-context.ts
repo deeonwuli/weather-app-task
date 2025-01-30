@@ -4,16 +4,20 @@ import { ResponseState } from "../types/ResponseState";
 
 export interface CityWeatherContextProps {
   city: string;
+  isMetricUnit: boolean;
   cityWeather: CityWeather | undefined;
   responseState: ResponseState | undefined;
   changeCity: (city: string) => void;
+  changeUnit: () => void;
 }
 
 export const CityWeatherContext = createContext<CityWeatherContextProps>({
   city: "",
+  isMetricUnit: true,
   cityWeather: undefined,
   responseState: undefined,
   changeCity: () => {},
+  changeUnit: () => {},
 });
 
 export function useCityWeather() {

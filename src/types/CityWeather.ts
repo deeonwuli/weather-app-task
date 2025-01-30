@@ -32,7 +32,7 @@ export type CityWeather = {
   region: string;
   name: string;
   humidity: number;
-  temperature: number;
+  temperature: string;
   time: Time;
   weatherConditions: WeatherCondition[];
   weatherHighlights: WeatherHighlights;

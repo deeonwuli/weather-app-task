@@ -6,16 +6,19 @@ export const CityWeatherProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
   const [city, setCity] = useState<string>("");
+  const [isMetricUnit, setMetricUnit] = useState<boolean>(true);
 
-  const { cityWeather, responseState } = useWeatherByCity(city);
+  const { cityWeather, responseState } = useWeatherByCity(city, isMetricUnit);
 
   return (
     <CityWeatherContext.Provider
       value={{
-        city: city,
+        city,
+        isMetricUnit,
         cityWeather,
         responseState,
         changeCity: (city: string) => setCity(city),
+        changeUnit: () => setMetricUnit(!isMetricUnit),
       }}
     >
       {children}

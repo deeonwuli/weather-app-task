@@ -10,7 +10,7 @@ const TemperatureConditions = (props: { cityWeather: CityWeather }) => {
   return (
     <TemperatureContainer>
       <div>
-        <TemperatureText>{temperature}°C</TemperatureText>
+        <TemperatureText>{temperature}</TemperatureText>
         <CenterText>{weatherCondition}</CenterText>
       </div>
 

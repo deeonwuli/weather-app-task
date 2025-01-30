@@ -7,7 +7,7 @@ import {
 } from "../types/CityWeather";
 import { ErrorMessage, ResponseState } from "../types/ResponseState";
 
-export function useWeatherByCity(city: string) {
+export function useWeatherByCity(city: string, isMetric = true) {
   const [cityWeather, setCityWeather] = useState<CityWeather>();
   const [responseState, setResponseState] = useState<ResponseState>({
     loading: false,
@@ -22,10 +22,10 @@ export function useWeatherByCity(city: string) {
       try {
         const response = await fetchData<CityWeatherApi>("/weather", {
           q: city,
-          units: "metric",
+          units: isMetric ? "metric" : "imperial",
         });
 
-        const weatherData = transformWeatherResponse(response);
+        const weatherData = transformWeatherResponse(response, isMetric);
         setCityWeather(weatherData);
         setResponseState((prevState) => ({ ...prevState, error: undefined }));
       } catch (err: unknown) {
@@ -40,7 +40,7 @@ export function useWeatherByCity(city: string) {
     }
 
     fetchWeather();
-  }, [city]);
+  }, [city, isMetric]);
 
   return {
     cityWeather: cityWeather,
@@ -48,7 +48,10 @@ export function useWeatherByCity(city: string) {
   };
 }
 
-function transformWeatherResponse(response: CityWeatherApi): CityWeather {
+function transformWeatherResponse(
+  response: CityWeatherApi,
+  isMetric: boolean
+): CityWeather {
   return {
     region: response.sys.state ?? getCountryName(response.sys.country),
     name: response.name,
@@ -56,7 +59,9 @@ function transformWeatherResponse(response: CityWeatherApi): CityWeather {
       timezone: response.timezone,
       localTime: response.dt,
     },
-    temperature: response.main.temp,
+    temperature: isMetric
+      ? `${response.main.temp}°C`
+      : `${response.main.temp}°F`,
     humidity: response.main.humidity,
     wind: { speed: response.wind.speed, degree: response.wind.degree },
     weatherConditions: mapWeatherConditionsResponse(response),

@@ -34,7 +34,9 @@ export const SearchInput = (props: SearchInputProps) => {
         placeholder={placeholder || "Search for a location"}
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      <Button onClick={findCityWeather}>Search</Button>
+      <Button disabled={!searchValue} onClick={findCityWeather}>
+        Search
+      </Button>
     </SearchForm>
   );
 };
