@@ -28,9 +28,13 @@ VITE_API_BASE_URL=
 ```
 
 2. Install dependencies:
+```bash
    yarn install
+```
 
 3. Start the development server:
+```bash
    yarn dev
+```
 
 
