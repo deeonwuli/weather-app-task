@@ -15,7 +15,7 @@
 - Vite
 
 ## Getting Started
-1. Clone the repository:
+1. Clone the repository
 
 2. At the root of the project folder, set OpenWeather API base url and api key in `.env.local`
 ```bash
