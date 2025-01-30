@@ -12,7 +12,7 @@ const ContentFallback = (props: {
   return (
     <>
       {responseState.error ? (
-        <StyledDiv outline>
+        <StyledDiv hasoutline="true">
           <h2>Error</h2>
           <p>{responseState.error.message}</p>
           <em>Please try again. 🌧️</em>
@@ -26,9 +26,10 @@ const ContentFallback = (props: {
 
 export default ContentFallback;
 
-const StyledDiv = styled.div<{ outline?: boolean }>`
+const StyledDiv = styled.div<{ hasoutline?: string }>`
   padding: 16px;
-  border: ${(props) => (props.outline ? "1px solid #dbe3e5" : "none")};
+  border: ${(props) =>
+    props.hasoutline === "true" ? "1px solid #dbe3e5" : "none"};
   border-radius: 12px;
   width: 75%;
 

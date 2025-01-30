@@ -8,10 +8,10 @@ type ButtonProps = {
 };
 
 const Button = (props: ButtonProps) => {
-  const { children, secondary = false, onClick } = props;
+  const { children, secondary, onClick } = props;
 
   return (
-    <StyledButton secondary={secondary} onClick={onClick}>
+    <StyledButton secondary={secondary ? "true" : ""} onClick={onClick}>
       {children}
     </StyledButton>
   );
@@ -19,9 +19,10 @@ const Button = (props: ButtonProps) => {
 
 export default Button;
 
-const StyledButton = styled.button<{ secondary: boolean }>`
+const StyledButton = styled.button<{ secondary?: string }>`
   all: unset;
-  background-color: ${(props) => (props.secondary ? "#F0F2F5" : "#33b2e5")};
+  background-color: ${(props) =>
+    props.secondary === "true" ? "#F0F2F5" : "#33b2e5"};
   color: #121717;
   padding: 8px 16px;
   border-radius: 12px;

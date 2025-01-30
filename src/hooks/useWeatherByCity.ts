@@ -16,6 +16,8 @@ export function useWeatherByCity(city: string) {
 
   useEffect(() => {
     async function fetchWeather() {
+      if (!city) return;
+
       setResponseState((prevState) => ({ ...prevState, loading: true }));
       try {
         const response = await fetchData<CityWeatherApi>("/weather", {

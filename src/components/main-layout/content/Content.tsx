@@ -11,7 +11,8 @@ import ContentFallback from "./ContentFallback";
 
 const Content = () => {
   const { cityWeather, responseState } = useCityWeather();
-  if (!cityWeather) return <ContentFallback responseState={responseState} />;
+  if (!cityWeather || responseState?.error)
+    return <ContentFallback responseState={responseState} />;
 
   const { region, name, weatherHighlights, time } = cityWeather;
   const { localTime, timezone } = time;
