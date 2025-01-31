@@ -8,17 +8,17 @@ export function useFavouriteCities(cityWeather: CityWeather | undefined) {
   );
 
   useEffect(() => {
-    if (favouriteCities.length !== favouriteCities.length) {
+    if (favouriteCities.length !== getFavouriteCities().length) {
       const existingFavouriteCities = getFavouriteCities();
       setFavouriteCities(existingFavouriteCities);
     }
   }, [favouriteCities]);
 
   const updateFavouriteCities = () => {
-    addCityToFavourites(favouriteCities, cityWeather?.name ?? "");
     const updatedFavouriteCities = getFavouriteCities();
-
     setFavouriteCities(updatedFavouriteCities);
+
+    return addCityToFavourites(favouriteCities, cityWeather?.name ?? "");
   };
 
   return {
