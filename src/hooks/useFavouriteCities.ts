@@ -3,7 +3,9 @@ import { City } from "../types/City";
 import { CityWeather } from "../types/CityWeather";
 
 export function useFavouriteCities(cityWeather: CityWeather | undefined) {
-  const [favouriteCities, setFavouriteCities] = useState<City[]>([]);
+  const [favouriteCities, setFavouriteCities] = useState<City[]>(() =>
+    getFavouriteCities()
+  );
 
   useEffect(() => {
     if (favouriteCities.length !== favouriteCities.length) {
