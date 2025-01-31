@@ -8,6 +8,8 @@ import { useState } from "react";
 
 const Header = () => {
   const { changeUnit } = useCityWeather();
+  const profileThumb =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEEg9z-ZF7R1dTA6quJkuPXJsyA6ViEp6F0Q&s";
 
   const [isDropdownVisible, setDropdownVisibility] = useState<boolean>(false);
   const toggleDropdown = () => setDropdownVisibility(!isDropdownVisible);
@@ -27,13 +29,7 @@ const Header = () => {
           <Icon src={compassIcon} height="40px" alt="compass icon" />
         </button>
         <a href="https://github.com/deeonwuli" target="_blank" rel="noreferrer">
-          <Icon
-            src={
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEEg9z-ZF7R1dTA6quJkuPXJsyA6ViEp6F0Q&s"
-            }
-            height="40px"
-            alt="profile thumb"
-          />
+          <Icon src={profileThumb} height="40px" alt="profile thumb" />
         </a>
       </StyledDiv>
 
@@ -50,13 +46,7 @@ const Header = () => {
             rel="noreferrer"
             className="menu-item"
           >
-            <Icon
-              src={
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEEg9z-ZF7R1dTA6quJkuPXJsyA6ViEp6F0Q&s"
-              }
-              height="40px"
-              alt="profile thumb"
-            />
+            <Icon src={profileThumb} height="40px" alt="profile thumb" />
             <p>Profile</p>
           </a>
         </Dropdown>

@@ -62,11 +62,3 @@ function getWeatherItemDescription(
       return weather.description || "";
   }
 }
-
-// if we use openWeather API weatherConditions, we can switch out to this icon component
-{
-  /* <Icon
-  src={`https://openweathermap.org/img/w/${imageUrl}.png`}
-  alt={`${title} icon`}
-/>; */
-}
